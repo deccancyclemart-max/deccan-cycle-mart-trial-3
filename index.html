@@ -33,7 +33,8 @@
                         'text-light': '#64748b',
                         'whatsapp-green': '#25D366',
                         'whatsapp-green-hover': '#1ebc59',
-                        'footer-bg': '#f0f4f8',
+                        // UPDATED FOOTER BACKGROUND
+                        'bg-footer-bg': '#f0f4f8'
                     },
                     borderRadius: {
                         '4xl': '1.5rem',
@@ -738,9 +739,7 @@
                         <p class="text-lg text-text-neutral-grey mt-4">Fill out the form below and we'll handle the rest.</p>
                     </div>
                     <div class="content-card rounded-2xl p-8 ring-2 ring-primary-blue">
-                        <form id="homepage-form" method="POST" class="space-y-4">
-                         <input type="hidden" name="formType" value="Service">
-                         <input type="hidden" name="secret" value="Deccan_DCM_209">
+                        <form id="homepage-form" class="space-y-4">
                             <input type="text" name="name" required class="w-full bg-white/50 border border-border-light-grey rounded-xl p-3 focus:border-primary-blue focus:ring-1 focus:ring-primary-blue transition" placeholder="Full Name">
                             <input type="tel" name="phone" required class="w-full bg-white/50 border border-border-light-grey rounded-xl p-3 focus:border-primary-blue focus:ring-1 focus:ring-primary-blue transition" placeholder="Phone Number">
                             <input type="email" name="email" class="w-full bg-white/50 border border-border-light-grey rounded-xl p-3 focus:border-primary-blue focus:ring-1 focus:ring-primary-blue transition" placeholder="Email Address">
@@ -877,9 +876,7 @@
                     <h2 class="text-3xl font-bold text-deep-blue">Book Home Service</h2>
                     <p class="text-text-neutral-grey mt-2">Enter your details and we'll arrange a pickup.</p>
                 </div>
-                <form id="service-form" method="POST" class="space-y-4">
-                <input type="hidden" name="formType" value="Service">
-                <input type="hidden" name="secret" value="Deccan_DCM_209">
+                <form id="service-form" class="space-y-4">
                     <input type="text" name="name" required class="w-full bg-white/50 border border-border-light-grey rounded-xl p-3 focus:border-primary-blue focus:ring-1 focus:ring-primary-blue" placeholder="Your Name">
                     <input type="tel" name="phone" required class="w-full bg-white/50 border border-border-light-grey rounded-xl p-3 focus:border-primary-blue focus:ring-1 focus:ring-primary-blue" placeholder="Your Phone Number">
                     <input type="email" name="email" class="w-full bg-white/50 border border-border-light-grey rounded-xl p-3 focus:border-primary-blue focus:ring-1 focus:ring-primary-blue" placeholder="Email Address">
@@ -925,9 +922,7 @@
                     <h2 class="text-3xl font-bold text-deep-blue">Check Exchange Value</h2>
                     <p class="text-text-neutral-grey mt-2">Provide details of your old cycle to get an estimate.</p>
                 </div>
-                <form id="exchange-form" method="POST" class="space-y-4">
-                 <input type="hidden" name="formType" value="Exchange">
-                 <input type="hidden" name="secret" value="Deccan_DCM_209">
+                <form id="exchange-form" enctype="multipart/form-data" class="space-y-4">
                     <input type="text" name="name" required class="w-full bg-white/50 border border-border-light-grey rounded-xl p-3 focus:border-primary-blue focus:ring-1 focus:ring-primary-blue" placeholder="Your Name">
                     <input type="tel" name="phone" required class="w-full bg-white/50 border border-border-light-grey rounded-xl p-3 focus:border-primary-blue focus:ring-1 focus:ring-primary-blue" placeholder="Your Phone Number">
                     <input type="email" name="email" class="w-full bg-white/50 border border-border-light-grey rounded-xl p-3 focus:border-primary-blue focus:ring-1 focus:ring-primary-blue" placeholder="Email Address">
@@ -940,8 +935,7 @@
                         <label class="block text-sm font-medium text-text-dark mb-2">Upload Photos (Optional):</label>
                         <input type="file" name="attachment" accept="image/*" multiple class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-yellow-50 file:text-yellow-700 hover:file:bg-yellow-100"/>
                     </div>
-                    <input type="hidden" name="_subject" value="New Exchange Request!">
-                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_subject" value="New Exchange Request!"><input type="hidden" name="_captcha" value="false">
                     <button type="submit" class="w-full premium-button py-3 rounded-xl text-lg">Get Estimate</button>
                     <p class="text-xs text-text-neutral-grey text-center pt-2">We respect your privacy. Your data is used only to serve you better.</p>
                 </form>
@@ -963,9 +957,7 @@
                     <h2 class="text-3xl font-bold text-deep-blue">Rental Subscription</h2>
                     <p class="text-text-neutral-grey mt-2">Complete your details to start your rental.</p>
                 </div>
-                <form id="rental-form" method="POST" class="space-y-4">
-                <input type="hidden" name="formType" value="Rental">
-                <input type="hidden" name="secret" value="Deccan_DCM_209">
+                <form id="rental-form" class="space-y-4">
                     <input id="rental-name" type="text" name="name" required class="w-full bg-white/50 border border-border-light-grey rounded-xl p-3 focus:border-primary-blue focus:ring-1 focus:ring-primary-blue transition" placeholder="Full Name">
                     <input id="rental-phone" type="tel" name="phone" required class="w-full bg-white/50 border border-border-light-grey rounded-xl p-3 focus:border-primary-blue focus:ring-1 focus:ring-primary-blue transition" placeholder="+91 Your Phone Number">
                     <input type="email" name="email" class="w-full bg-white/50 border border-border-light-grey rounded-xl p-3 focus:border-primary-blue focus:ring-1 focus:ring-primary-blue transition" placeholder="Email Address">
@@ -1009,416 +1001,374 @@
     </a>  
 
     <script>
-document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
 
-    // --- CONFIG: set these two values only ---
-    const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyOWSUNCwayZhhWBasAIdqrJGBWf9MlMIu4c4MjzMXNBECToMJsIGBAcXiU56ZSlrB_/exec ";   // <-- your Apps Script Web App URL
-    const WEBHOOK_SECRET = "Deccan_DCM_209";  // <-- same secret you set in Apps Script
-    // -----------------------------------------
+        // --- HEADER, NAV, & BIKE ANIMATION ---
+        const header = document.querySelector('header.main-header');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-    // --- HEADER, NAV, & BIKE ANIMATION ---
-    const header = document.querySelector('header.main-header');
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            if(header) header.classList.add('scrolled');
-        } else {
-            if(header) header.classList.remove('scrolled');
-        }
-    });
-    
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-    }
-    
-    // This logic is for single-page scrollspy; it won't apply fully to a multi-page site
-    // but will highlight 'Home' when at the top.
-    const sections = document.querySelectorAll('main section[id]');
-    const navLinks = document.querySelectorAll('.main-header nav a');
-    const mobileNavLinks = document.querySelectorAll('#mobile-menu a');
-    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.6 };
-    const sectionObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                navLinks.forEach(link => {
-                    // For a multi-page site, we only care about the active state for the current page's sections
-                    if (link.href.includes('#' + id)) {
-                       link.classList.add('active');
-                    } else if (link.href.includes('#')) {
-                       link.classList.remove('active');
-                    }
-                });
-                 mobileNavLinks.forEach(link => {
-                    if (link.href.includes('#' + id)) {
-                       link.classList.add('active');
-                    } else if (link.href.includes('#')) {
-                       link.classList.remove('active');
-                    }
-                });
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                if(header) header.classList.add('scrolled');
+            } else {
+                if(header) header.classList.remove('scrolled');
             }
         });
-    }, observerOptions);
-    sections.forEach(section => {
-        if(section) sectionObserver.observe(section);
-    });
-
-
-    const assemblyContainer = document.getElementById('assembly-container');
-    if (assemblyContainer) {
-        const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        let hasAnimated = false;
-        const magicFlash = document.getElementById('magic-flash');
-        const finalBikeImage = document.getElementById('final-bike-image');
-        const FROM_POSITIONS = {
-            'part-frame':       'translateX(-120%) translateY(10%) rotate(-25deg) scale(0.7)',
-            'part-wheel-front': 'translateX(120%) translateY(-10%) rotate(90deg) scale(0.7)',
-            'part-wheel-rear':  'translateX(120%) translateY(50%) rotate(-90deg) scale(0.7)',
-            'part-handle':      'translateY(-250%) scale(0.7)',
-            'part-seat':        'translateY(-300%) scale(0.7)',
-            'part-gears':       'translateY(250%) scale(0.7)',
-        };
-        const parts = Object.keys(FROM_POSITIONS).map(id => document.getElementById(id));
-        const initializePartPositions = () => {
-            parts.forEach(part => {
-                if (!part) return;
-                part.style.transition = 'none';
-                part.style.opacity = '0';
-                part.style.transform = FROM_POSITIONS[part.id];
-            });
-            if(finalBikeImage) finalBikeImage.classList.remove('visible');
-            if(magicFlash) magicFlash.classList.remove('animate');
-        };
-        const startAssembly = () => {
-            if (hasAnimated) return;
-            hasAnimated = true;
-            if (isReducedMotion) {
-                if(finalBikeImage) finalBikeImage.classList.add('visible');
-                return;
-            }
-            parts.forEach((part, index) => {
-                if (!part) return;
-                setTimeout(() => {
-                    part.style.transition = 'opacity 0.8s ease-out, transform 1.5s cubic-bezier(0.23, 1, 0.32, 1)';
-                    part.style.opacity = '1';
-                    part.style.transform = 'translate(-50%, -50%)';
-                }, index * 150);
-            });
-            setTimeout(() => {
-                if(magicFlash) magicFlash.classList.add('animate');
-            }, 1800); 
-            setTimeout(() => {
-                parts.forEach(p => {
-                    if (p) {
-                        p.style.transition = 'opacity 0.3s ease-out';
-                        p.style.opacity = '0';
-                    }
-                });
-            }, 1900);
-            setTimeout(() => {
-                if (finalBikeImage) {
-                   finalBikeImage.classList.add('visible');
-                }
-            }, 2100);
-        };
-        initializePartPositions(); 
-        if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver((entries) => {
-                if (entries[0].isIntersecting) {
-                    startAssembly();
-                    observer.unobserve(assemblyContainer);
-                }
-            }, { threshold: 0.3 });
-            observer.observe(assemblyContainer);
-        } else {
-            startAssembly();
-        }
-    }
-
-    // --- NEW: Backend submission helper (replaces old handleFormSubmit) ---
-    async function postJson(url, data) {
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      const text = await res.text();
-      try { return { ok: res.ok, json: JSON.parse(text) }; } catch(e) { return { ok: res.ok, json: null, text }; }
-    }
-
-    // This function mirrors the previous UI behavior but posts JSON to your Apps Script webhook.
-    async function submitToWebhook(event) {
-      event.preventDefault();
-      const form = event.target;
-      const submitButton = form.querySelector('button[type="submit"]');
-      const formContent = form.closest('div[id$="-form-content"], form');
-      const successMessage = (form.closest('div[id$="-content"], div.content-card') || {}).querySelector ? form.closest('div[id$="-content"], div.content-card').querySelector('div[id$="-success-message"]') : null;
-
-      if (!submitButton || !successMessage || !formContent) return;
-
-      const originalButtonText = submitButton.innerHTML;
-      submitButton.disabled = true;
-      submitButton.innerHTML = 'Submitting...';
-
-      // Build payload (skip file inputs)
-      const fd = new FormData(form);
-      const payload = {};
-      for (const [k, v] of fd.entries()) {
-        const el = form.querySelector(`[name="${k}"]`);
-        if (el && el.type === 'file') continue; // skip files in simple webhook flow
-        payload[k] = v;
-      }
-
-      // Required backend fields
-      payload.secret = payload.secret || WEBHOOK_SECRET;
-      payload.formType = payload.formType || form.dataset.formType || (payload.form_type || 'Unknown');
-      payload.source = payload.source || window.location.pathname || 'Website';
-
-      try {
-        const resp = await postJson(WEBAPP_URL, payload);
-        if (resp.ok && resp.json && resp.json.status === 'success') {
-          formContent.classList.add('hidden');
-          successMessage.classList.remove('hidden');
-          form.reset();
-        } else {
-          console.error('Server error:', resp);
-          alert('Submission failed on server. Please try again or contact us on WhatsApp.');
-        }
-      } catch (err) {
-        console.error('Submission error:', err);
-        alert('There was an error submitting your form. Please check your connection and try again.');
-      } finally {
-        submitButton.disabled = false;
-        submitButton.innerHTML = originalButtonText;
-      }
-    }
-    // --- END NEW submission helper ---
-
-    function initializeModal(modalId, openButtonsClass) {
-        const modal = document.getElementById(modalId);
-        if (!modal) return;
-        const openButtons = document.querySelectorAll(`.${openButtonsClass}`);
-        const content = modal.querySelector('div[id$="-content"]');
-        const closeButtons = modal.querySelectorAll('.close-modal-button');
-        const form = content.querySelector('form');
-        const formContent = content.querySelector('div[id$="-form-content"]');
-        const successMessage = content.querySelector('div[id$="-success-message"]');
         
-        const openModal = () => {
-            modal.style.opacity = '1';
-            modal.style.pointerEvents = 'auto';
-            content.style.transform = 'scale(1)';
-            content.style.opacity = '1';
-        };
-        const closeModal = () => {
-            content.style.transform = 'scale(0.95)';
-            content.style.opacity = '0';
-            modal.style.opacity = '0';
-            setTimeout(() => {
-                modal.style.pointerEvents = 'none';
-                if (formContent && successMessage && form) {
-                    const formElement = formContent || form;
-                    formElement.classList.remove('hidden');
-                    successMessage.classList.add('hidden');
-                    form.reset(); 
-                    const submitButton = form.querySelector('button[type="submit"]');
-                    if (submitButton && submitButton.dataset.originalText) {
-                         submitButton.innerHTML = submitButton.dataset.originalText;
-                         submitButton.disabled = false;
-                    }
-                }
-            }, 300);
-        };
-
-        openButtons.forEach(btn => btn.addEventListener('click', openModal));
-        closeButtons.forEach(btn => btn.addEventListener('click', closeModal));
-        modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-        if(form) {
-            const submitButton = form.querySelector('button[type="submit"]');
-            if(submitButton) submitButton.dataset.originalText = submitButton.innerHTML;
-            // ATTACH NEW SUBMISSION HANDLER (replaces old handleFormSubmit)
-            form.addEventListener('submit', submitToWebhook);
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
         }
-    }
-    
-    const homepageForm = document.getElementById('homepage-form');
-    if (homepageForm) {
-        // ATTACH NEW SUBMISSION HANDLER (replaces old handleFormSubmit)
-        homepageForm.addEventListener('submit', submitToWebhook);
-    }
+        
+        // This logic is for single-page scrollspy; it won't apply fully to a multi-page site
+        // but will highlight 'Home' when at the top.
+        const sections = document.querySelectorAll('main section[id]');
+        const navLinks = document.querySelectorAll('.main-header nav a');
+        const mobileNavLinks = document.querySelectorAll('#mobile-menu a');
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.6 };
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navLinks.forEach(link => {
+                        // For a multi-page site, we only care about the active state for the current page's sections
+                        if (link.href.includes('#' + id)) {
+                           link.classList.add('active');
+                        } else if (link.href.includes('#')) {
+                           link.classList.remove('active');
+                        }
+                    });
+                     mobileNavLinks.forEach(link => {
+                        if (link.href.includes('#' + id)) {
+                           link.classList.add('active');
+                        } else if (link.href.includes('#')) {
+                           link.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+        sections.forEach(section => {
+            if(section) sectionObserver.observe(section);
+        });
 
-    initializeModal('service-modal', 'open-service-modal');
-    initializeModal('exchange-modal', 'open-exchange-modal');
-    initializeModal('rental-modal', 'open-rental-modal');
-    
-    const rentalPlanSelect = document.getElementById('rental-plan-type');
-    if (rentalPlanSelect) {
-        document.querySelectorAll('.open-rental-modal-with').forEach(btn => {
-            btn.addEventListener('click', () => {
-                rentalPlanSelect.value = 'With Maintenance';
+
+        const assemblyContainer = document.getElementById('assembly-container');
+        if (assemblyContainer) {
+            const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            let hasAnimated = false;
+            const magicFlash = document.getElementById('magic-flash');
+            const finalBikeImage = document.getElementById('final-bike-image');
+            const FROM_POSITIONS = {
+                'part-frame':       'translateX(-120%) translateY(10%) rotate(-25deg) scale(0.7)',
+                'part-wheel-front': 'translateX(120%) translateY(-10%) rotate(90deg) scale(0.7)',
+                'part-wheel-rear':  'translateX(120%) translateY(50%) rotate(-90deg) scale(0.7)',
+                'part-handle':      'translateY(-250%) scale(0.7)',
+                'part-seat':        'translateY(-300%) scale(0.7)',
+                'part-gears':       'translateY(250%) scale(0.7)',
+            };
+            const parts = Object.keys(FROM_POSITIONS).map(id => document.getElementById(id));
+            const initializePartPositions = () => {
+                parts.forEach(part => {
+                    if (!part) return;
+                    part.style.transition = 'none';
+                    part.style.opacity = '0';
+                    part.style.transform = FROM_POSITIONS[part.id];
+                });
+                if(finalBikeImage) finalBikeImage.classList.remove('visible');
+                if(magicFlash) magicFlash.classList.remove('animate');
+            };
+            const startAssembly = () => {
+                if (hasAnimated) return;
+                hasAnimated = true;
+                if (isReducedMotion) {
+                    if(finalBikeImage) finalBikeImage.classList.add('visible');
+                    return;
+                }
+                parts.forEach((part, index) => {
+                    if (!part) return;
+                    setTimeout(() => {
+                        part.style.transition = 'opacity 0.8s ease-out, transform 1.5s cubic-bezier(0.23, 1, 0.32, 1)';
+                        part.style.opacity = '1';
+                        part.style.transform = 'translate(-50%, -50%)';
+                    }, index * 150);
+                });
+                setTimeout(() => {
+                    if(magicFlash) magicFlash.classList.add('animate');
+                }, 1800); 
+                setTimeout(() => {
+                    parts.forEach(p => {
+                        if (p) {
+                            p.style.transition = 'opacity 0.3s ease-out';
+                            p.style.opacity = '0';
+                        }
+                    });
+                }, 1900);
+                setTimeout(() => {
+                    if (finalBikeImage) {
+                       finalBikeImage.classList.add('visible');
+                    }
+                }, 2100);
+            };
+            initializePartPositions(); 
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        startAssembly();
+                        observer.unobserve(assemblyContainer);
+                    }
+                }, { threshold: 0.3 });
+                observer.observe(assemblyContainer);
+            } else {
+                startAssembly();
+            }
+        }
+
+        // --- MODALS, FORMS, GEOLOCATION, & FADE-IN ---
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const formContent = form.closest('div[id$="-form-content"], form');
+            const successMessage = form.closest('div[id$="-content"], div.content-card').querySelector('div[id$="-success-message"]');
+
+            if (!submitButton || !successMessage || !formContent) return;
+            
+            const originalButtonText = submitButton.innerHTML;
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'Submitting...';
+            
+            // Simulate a network request and show success message
+            setTimeout(() => {
+                formContent.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+                
+                // Optional: Reset button after a delay if user stays in modal
+                // This part is less critical as modal closure already handles reset.
+            }, 1000); 
+        }
+
+        function initializeModal(modalId, openButtonsClass) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            const openButtons = document.querySelectorAll(`.${openButtonsClass}`);
+            const content = modal.querySelector('div[id$="-content"]');
+            const closeButtons = modal.querySelectorAll('.close-modal-button');
+            const form = content.querySelector('form');
+            const formContent = content.querySelector('div[id$="-form-content"]');
+            const successMessage = content.querySelector('div[id$="-success-message"]');
+            
+            const openModal = () => {
+                modal.style.opacity = '1';
+                modal.style.pointerEvents = 'auto';
+                content.style.transform = 'scale(1)';
+                content.style.opacity = '1';
+            };
+            const closeModal = () => {
+                content.style.transform = 'scale(0.95)';
+                content.style.opacity = '0';
+                modal.style.opacity = '0';
+                setTimeout(() => {
+                    modal.style.pointerEvents = 'none';
+                    if (formContent && successMessage && form) {
+                        const formElement = formContent || form;
+                        formElement.classList.remove('hidden');
+                        successMessage.classList.add('hidden');
+                        form.reset(); 
+                        const submitButton = form.querySelector('button[type="submit"]');
+                        if (submitButton && submitButton.dataset.originalText) {
+                             submitButton.innerHTML = submitButton.dataset.originalText;
+                             submitButton.disabled = false;
+                        }
+                    }
+                }, 300);
+            };
+
+            openButtons.forEach(btn => btn.addEventListener('click', openModal));
+            closeButtons.forEach(btn => btn.addEventListener('click', closeModal));
+            modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+            if(form) {
+                const submitButton = form.querySelector('button[type="submit"]');
+                if(submitButton) submitButton.dataset.originalText = submitButton.innerHTML;
+                form.addEventListener('submit', handleFormSubmit);
+            }
+        }
+        
+        const homepageForm = document.getElementById('homepage-form');
+        if (homepageForm) {
+            homepageForm.addEventListener('submit', handleFormSubmit);
+        }
+
+        initializeModal('service-modal', 'open-service-modal');
+        initializeModal('exchange-modal', 'open-exchange-modal');
+        initializeModal('rental-modal', 'open-rental-modal');
+        
+        const rentalPlanSelect = document.getElementById('rental-plan-type');
+        if (rentalPlanSelect) {
+            document.querySelectorAll('.open-rental-modal-with').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    rentalPlanSelect.value = 'With Maintenance';
+                });
             });
-        });
-        document.querySelectorAll('.open-rental-modal-without').forEach(btn => {
-            btn.addEventListener('click', () => {
-                rentalPlanSelect.value = 'Without Maintenance';
+            document.querySelectorAll('.open-rental-modal-without').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    rentalPlanSelect.value = 'Without Maintenance';
+                });
             });
-        });
-    }
-    
-    function setupGeolocation(buttonId, addressId, statusId) {
-        const geoBtn = document.getElementById(buttonId);
-        const addressField = document.getElementById(addressId);
-        const statusMsg = document.getElementById(statusId);
-        if (!geoBtn || !addressField || !statusMsg) return;
-        geoBtn.addEventListener('click', () => {
-            if (navigator.geolocation) {
-                geoBtn.disabled = true;
-                geoBtn.textContent = 'Fetching Location...';
-                statusMsg.textContent = 'Please wait...';
-                statusMsg.className = 'text-sm text-center mt-2 h-5 text-gray-500';
-                navigator.geolocation.getCurrentPosition(
-                    async (position) => {
-                        const { latitude, longitude } = position.coords;
-                        try {
-                            const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
-                            const data = await response.json();
-                            if (data && data.display_name) {
-                                addressField.value = data.display_name;
-                                statusMsg.textContent = 'Success!';
-                                statusMsg.className = 'text-sm text-center mt-2 h-5 text-green-600';
-                            } else { throw new Error('No address found'); }
-                        } catch (error) {
-                            statusMsg.textContent = 'Failed to fetch address.';
+        }
+        
+        function setupGeolocation(buttonId, addressId, statusId) {
+            const geoBtn = document.getElementById(buttonId);
+            const addressField = document.getElementById(addressId);
+            const statusMsg = document.getElementById(statusId);
+            if (!geoBtn || !addressField || !statusMsg) return;
+            geoBtn.addEventListener('click', () => {
+                if (navigator.geolocation) {
+                    geoBtn.disabled = true;
+                    geoBtn.textContent = 'Fetching Location...';
+                    statusMsg.textContent = 'Please wait...';
+                    statusMsg.className = 'text-sm text-center mt-2 h-5 text-gray-500';
+                    navigator.geolocation.getCurrentPosition(
+                        async (position) => {
+                            const { latitude, longitude } = position.coords;
+                            try {
+                                const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
+                                const data = await response.json();
+                                if (data && data.display_name) {
+                                    addressField.value = data.display_name;
+                                    statusMsg.textContent = 'Success!';
+                                    statusMsg.className = 'text-sm text-center mt-2 h-5 text-green-600';
+                                } else { throw new Error('No address found'); }
+                            } catch (error) {
+                                statusMsg.textContent = 'Failed to fetch address.';
+                                statusMsg.className = 'text-sm text-center mt-2 h-5 text-red-600';
+                            } finally {
+                                geoBtn.disabled = false;
+                                geoBtn.innerHTML = `<svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" /></svg> Use My Location`;
+                            }
+                        },
+                        (error) => {
+                            statusMsg.textContent = 'Failed to fetch location.';
                             statusMsg.className = 'text-sm text-center mt-2 h-5 text-red-600';
-                        } finally {
                             geoBtn.disabled = false;
                             geoBtn.innerHTML = `<svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" /></svg> Use My Location`;
                         }
-                    },
-                    (error) => {
-                        statusMsg.textContent = 'Failed to fetch location.';
-                        statusMsg.className = 'text-sm text-center mt-2 h-5 text-red-600';
-                        geoBtn.disabled = false;
-                        geoBtn.innerHTML = `<svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" /></svg> Use My Location`;
-                    }
-                );
-            } else {
-                statusMsg.textContent = 'Geolocation not supported.';
-                statusMsg.className = 'text-sm text-center mt-2 h-5 text-red-600';
-            }
-        });
-    }
-    setupGeolocation('service-getLocationBtn', 'service-address', 'service-location-status');
-    setupGeolocation('homepage-getLocationBtn', 'homepage-address', 'homepage-location-status');
-    
-    const fadeInObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in-section').forEach(target => fadeInObserver.observe(target));
+                    );
+                } else {
+                    statusMsg.textContent = 'Geolocation not supported.';
+                    statusMsg.className = 'text-sm text-center mt-2 h-5 text-red-600';
+                }
+            });
+        }
+        setupGeolocation('service-getLocationBtn', 'service-address', 'service-location-status');
+        setupGeolocation('homepage-getLocationBtn', 'homepage-address', 'homepage-location-status');
+        
+        const fadeInObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in-section').forEach(target => fadeInObserver.observe(target));
 
-    // --- RESTORED: TESTIMONIALS CAROUSEL SCRIPT ---
-    const testimonials = [
-        { quote: "One of the best cycle stores in Secunderabad. They are very friendly and have a good collection of cycles. They did a patient check-up of my bicycle.", author: "Ravi Varma", role: "Customer" },
-        { quote: "Very Good services. And they have very good skilled technicians who are very good at their work.", author: "Sandeep Putta", role: "Customer" },
-        { quote: "Best service and best price. The owner of the shop is very good in nature.", author: "Shaik Amer", role: "Customer" },
-        { quote: "Excellent work done. A very nice person who listens to your problem patiently and resolves it.", author: "Prasad P", role: "Customer" },
-        { quote: "The best cycle service I have ever seen they treat the cycles like their own cycle... Super Anna!", author: "ROHITH VLOGS", role: "Customer" },
-        { quote: "Best cycle store in the entire Trimulgherry, Bolarum area. They provide excellent service and genuine parts.", author: "Suraj Singh", role: "Customer" },
-        { quote: "Good place for cycle service. The staff is knowledgeable and the prices are very reasonable. Highly recommend.", author: "Abhishek Toppo", role: "Customer" },
-        { quote: "Very good service... They offer home delivery and pickup which is very convenient for everyone.", author: "Venkat Reddy", role: "Customer" },
-        { quote: "Very good service and perfect work. My cycle feels brand new after their service. Keep it up!", author: "Mohammed Moinuddin", role: "Customer" },
-        { quote: "Good receiving and good service for my kid's cycle. They are very patient and friendly with children.", author: "Chaitanya Chaitu", role: "Parent" },
-        { quote: "Bahut accha service hai, aur cycles ke variety bhi bahut hai. Staff is very helpful and suggests the best options.", author: "Karthik Goud", role: "Customer" },
-        { quote: "Good service and responsible pricing. They are very transparent with the costs and there are no hidden charges.", author: "Sridhar Rao", role: "Customer" },
-        { quote: "Best cycle mart in Bolarum. A one-stop shop for sales, service, and accessories. Excellent customer support.", author: "Vamsi Krishna", role: "Customer" },
-        { quote: "Reasonable price and good service. I am very satisfied with their work and professionalism.", author: "Sheik Nadeem", role: "Customer" },
-        { quote: "Super excellent work! My cycle was repaired quickly and is now in perfect condition. Great job!", author: "Syed Ghouse", role: "Customer" }
-    ];
-    let currentTestimonial = 0;
-    const carouselContainer = document.getElementById('testimonial-carousel-container');
-    const authorsContainer = document.getElementById('testimonial-authors-container');
-    const nextBtn = document.getElementById('next-testimonial');
-    const prevBtn = document.getElementById('prev-testimonial');
-    const getRandomAvatar = (authorName) => {
-        const seed = authorName.replace(/\s/g, '');
-        return `https://i.pravatar.cc/64?u=${seed}`;
-    };
-    function renderCarousel() {
-        if (!carouselContainer || !authorsContainer) return;
-        carouselContainer.innerHTML = '';
-        testimonials.forEach((t, index) => {
-            const slide = document.createElement('div');
-            slide.className = 'testimonial-slide';
-            let offset = index - currentTestimonial;
-            if (offset < -Math.floor(testimonials.length / 2)) offset += testimonials.length;
-            if (offset > Math.floor(testimonials.length / 2)) offset -= testimonials.length;
-            let transform, opacity, zIndex;
-            if (offset === 0) {
-                transform = 'translateX(0) scale(1)';
-                opacity = 'opacity-100';
-                zIndex = 'z-20';
-                slide.classList.add('active');
-            } else if (offset === -1) {
-                transform = 'translateX(-80%) scale(0.8)';
-                opacity = 'opacity-50';
-                zIndex = 'z-10';
-            } else if (offset === 1) {
-                transform = 'translateX(80%) scale(0.8)';
-                opacity = 'opacity-50';
-                zIndex = 'z-10';
-            } else {
-                transform = `translateX(${offset * 100}%) scale(0.6)`;
-                opacity = 'opacity-0';
-                zIndex = 'z-0';
-            }
-            slide.style.transform = transform;
-            slide.style.zIndex = zIndex.replace('z-', '');
-            slide.classList.add(opacity);
-            slide.innerHTML = `<div class="testimonial-bubble"><p>"${t.quote}"</p></div>`;
-            carouselContainer.appendChild(slide);
-        });
-        authorsContainer.innerHTML = '';
-        const prevIndex = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
-        const nextIndex = (currentTestimonial + 1) % testimonials.length;
-        const authorsToShow = [ testimonials[prevIndex], testimonials[currentTestimonial], testimonials[nextIndex] ];
-        authorsToShow.forEach((t, displayIndex) => {
-             const isActive = displayIndex === 1;
-             const authorDiv = document.createElement('div');
-             authorDiv.className = `testimonial-author ${isActive ? 'active' : ''}`;
-             authorDiv.innerHTML = `
-                <img src="${getRandomAvatar(t.author)}" alt="${t.author}" class="testimonial-avatar">
-                <p class="font-bold text-deep-blue mt-2">${t.author}</p>
-                <p class="text-sm text-text-neutral-grey">${t.role}</p>
-            `;
-            authorsContainer.appendChild(authorDiv);
-        });
-    }
-    function navigate(direction) {
-        currentTestimonial = (currentTestimonial + direction + testimonials.length) % testimonials.length;
-        renderCarousel();
-    }
-    if (nextBtn && prevBtn && carouselContainer && authorsContainer) {
-        renderCarousel();
-        nextBtn.addEventListener('click', () => navigate(1));
-        prevBtn.addEventListener('click', () => navigate(-1));
-        let autoAdvance = setInterval(() => navigate(1), 5000);
-        carouselContainer.addEventListener('mouseenter', () => clearInterval(autoAdvance));
-        carouselContainer.addEventListener('mouseleave', () => {
-            autoAdvance = setInterval(() => navigate(1), 5000);
-        });
-    }
-});
-</script>
-
+        // --- RESTORED: TESTIMONIALS CAROUSEL SCRIPT ---
+        const testimonials = [
+            { quote: "One of the best cycle stores in Secunderabad. They are very friendly and have a good collection of cycles. They did a patient check-up of my bicycle.", author: "Ravi Varma", role: "Customer" },
+            { quote: "Very Good services. And they have very good skilled technicians who are very good at their work.", author: "Sandeep Putta", role: "Customer" },
+            { quote: "Best service and best price. The owner of the shop is very good in nature.", author: "Shaik Amer", role: "Customer" },
+            { quote: "Excellent work done. A very nice person who listens to your problem patiently and resolves it.", author: "Prasad P", role: "Customer" },
+            { quote: "The best cycle service I have ever seen they treat the cycles like their own cycle... Super Anna!", author: "ROHITH VLOGS", role: "Customer" },
+            { quote: "Best cycle store in the entire Trimulgherry, Bolarum area. They provide excellent service and genuine parts.", author: "Suraj Singh", role: "Customer" },
+            { quote: "Good place for cycle service. The staff is knowledgeable and the prices are very reasonable. Highly recommend.", author: "Abhishek Toppo", role: "Customer" },
+            { quote: "Very good service... They offer home delivery and pickup which is very convenient for everyone.", author: "Venkat Reddy", role: "Customer" },
+            { quote: "Very good service and perfect work. My cycle feels brand new after their service. Keep it up!", author: "Mohammed Moinuddin", role: "Customer" },
+            { quote: "Good receiving and good service for my kid's cycle. They are very patient and friendly with children.", author: "Chaitanya Chaitu", role: "Parent" },
+            { quote: "Bahut accha service hai, aur cycles ke variety bhi bahut hai. Staff is very helpful and suggests the best options.", author: "Karthik Goud", role: "Customer" },
+            { quote: "Good service and responsible pricing. They are very transparent with the costs and there are no hidden charges.", author: "Sridhar Rao", role: "Customer" },
+            { quote: "Best cycle mart in Bolarum. A one-stop shop for sales, service, and accessories. Excellent customer support.", author: "Vamsi Krishna", role: "Customer" },
+            { quote: "Reasonable price and good service. I am very satisfied with their work and professionalism.", author: "Sheik Nadeem", role: "Customer" },
+            { quote: "Super excellent work! My cycle was repaired quickly and is now in perfect condition. Great job!", author: "Syed Ghouse", role: "Customer" }
+        ];
+        let currentTestimonial = 0;
+        const carouselContainer = document.getElementById('testimonial-carousel-container');
+        const authorsContainer = document.getElementById('testimonial-authors-container');
+        const nextBtn = document.getElementById('next-testimonial');
+        const prevBtn = document.getElementById('prev-testimonial');
+        const getRandomAvatar = (authorName) => {
+            const seed = authorName.replace(/\s/g, '');
+            return `https://i.pravatar.cc/64?u=${seed}`;
+        };
+        function renderCarousel() {
+            if (!carouselContainer || !authorsContainer) return;
+            carouselContainer.innerHTML = '';
+            testimonials.forEach((t, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'testimonial-slide';
+                let offset = index - currentTestimonial;
+                if (offset < -Math.floor(testimonials.length / 2)) offset += testimonials.length;
+                if (offset > Math.floor(testimonials.length / 2)) offset -= testimonials.length;
+                let transform, opacity, zIndex;
+                if (offset === 0) {
+                    transform = 'translateX(0) scale(1)';
+                    opacity = 'opacity-100';
+                    zIndex = 'z-20';
+                    slide.classList.add('active');
+                } else if (offset === -1) {
+                    transform = 'translateX(-80%) scale(0.8)';
+                    opacity = 'opacity-50';
+                    zIndex = 'z-10';
+                } else if (offset === 1) {
+                    transform = 'translateX(80%) scale(0.8)';
+                    opacity = 'opacity-50';
+                    zIndex = 'z-10';
+                } else {
+                    transform = `translateX(${offset * 100}%) scale(0.6)`;
+                    opacity = 'opacity-0';
+                    zIndex = 'z-0';
+                }
+                slide.style.transform = transform;
+                slide.style.zIndex = zIndex.replace('z-', '');
+                slide.classList.add(opacity);
+                slide.innerHTML = `<div class="testimonial-bubble"><p>"${t.quote}"</p></div>`;
+                carouselContainer.appendChild(slide);
+            });
+            authorsContainer.innerHTML = '';
+            const prevIndex = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+            const nextIndex = (currentTestimonial + 1) % testimonials.length;
+            const authorsToShow = [ testimonials[prevIndex], testimonials[currentTestimonial], testimonials[nextIndex] ];
+            authorsToShow.forEach((t, displayIndex) => {
+                 const isActive = displayIndex === 1;
+                 const authorDiv = document.createElement('div');
+                 authorDiv.className = `testimonial-author ${isActive ? 'active' : ''}`;
+                 authorDiv.innerHTML = `
+                    <img src="${getRandomAvatar(t.author)}" alt="${t.author}" class="testimonial-avatar">
+                    <p class="font-bold text-deep-blue mt-2">${t.author}</p>
+                    <p class="text-sm text-text-neutral-grey">${t.role}</p>
+                `;
+                authorsContainer.appendChild(authorDiv);
+            });
+        }
+        function navigate(direction) {
+            currentTestimonial = (currentTestimonial + direction + testimonials.length) % testimonials.length;
+            renderCarousel();
+        }
+        if (nextBtn && prevBtn && carouselContainer && authorsContainer) {
+            renderCarousel();
+            nextBtn.addEventListener('click', () => navigate(1));
+            prevBtn.addEventListener('click', () => navigate(-1));
+            let autoAdvance = setInterval(() => navigate(1), 5000);
+            carouselContainer.addEventListener('mouseenter', () => clearInterval(autoAdvance));
+            carouselContainer.addEventListener('mouseleave', () => {
+                autoAdvance = setInterval(() => navigate(1), 5000);
+            });
+        }
+    });
+    </script>
 </body>
 </html>
+
 
