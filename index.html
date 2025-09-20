@@ -32,9 +32,8 @@
                         'border-light-grey': '#e5e7eb',
                         'text-light': '#64748b',
                         'whatsapp-green': '#25D366',
-                        'whatsapp-green-hover': '#1ebc59'
+                        'whatsapp-green-hover': '#1ebc59',
                         'footer-bg': '#f0f4f8',
-
                     },
                     borderRadius: {
                         '4xl': '1.5rem',
@@ -56,12 +55,16 @@
             --accent-yellow: #fded0d;
         }
 
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth;
+                width: 100vw;
+                overflow-x: hidden;
+        }
         body {
             background-color: #FFFFFF;
             position: relative;
             overflow-x: hidden;
             font-family: 'Inter', sans-serif;
+            width: 100vw;
         }
         main {
             position: relative;
@@ -695,8 +698,9 @@
                                 <p class="text-text-neutral-grey">Enjoy convenient and fast service right at your doorstep with our free pickup and drop.</p>
                             </div>
                             <div class="p-4">
-                                <div class="flex items-center justify-center mb-4 text-4xl">🗓️</div>
-                                <h3 class="text-xl font-bold text-deep-blue mb-2">Flexible Rentals</h3>
+                                <div class="flex items-center justify-center mb-4 text-4xl">🏷️</div>
+                                <!-- UPDATED TEXT -->
+                                <h3 class="text-xl font-bold text-deep-blue mb-2">Competitive Prices</h3>
                                 <p class="text-text-neutral-grey">Choose from daily, weekly, or monthly rental plans to suit your cycling needs.</p>
                             </div>
                             <div class="p-4">
@@ -1022,11 +1026,12 @@
             });
         }
         
-        // This logic is for single-page scrollspy; it won't apply fully to a multi-page site
-        // but will highlight 'Home' when at the top.
         const sections = document.querySelectorAll('main section[id]');
         const navLinks = document.querySelectorAll('.main-header nav a');
         const mobileNavLinks = document.querySelectorAll('#mobile-menu a');
+        
+        // This logic is for single-page scrollspy; it won't apply fully to a multi-page site
+        // but will highlight 'Home' when at the top.
         const observerOptions = { root: null, rootMargin: '0px', threshold: 0.6 };
         const sectionObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -1126,8 +1131,8 @@
             }
         }
 
-        // --- MODALS, FORMS, GEOLOCATION, & FADE-IN ---
-        async function handleFormSubmit(event) {
+        // --- MODALS, FORMS, GEOLOCATION, & FADE-IN (UPDATED) ---
+        function handleFormSubmit(event) {
             event.preventDefault();
             const form = event.target;
             const submitButton = form.querySelector('button[type="submit"]');
@@ -1136,18 +1141,14 @@
 
             if (!submitButton || !successMessage || !formContent) return;
             
-            const originalButtonText = submitButton.innerHTML;
             submitButton.disabled = true;
             submitButton.innerHTML = 'Submitting...';
             
-            // Simulate a network request and show success message
+            // Simulate a short delay then show the success message
             setTimeout(() => {
                 formContent.classList.add('hidden');
                 successMessage.classList.remove('hidden');
-                
-                // Optional: Reset button after a delay if user stays in modal
-                // This part is less critical as modal closure already handles reset.
-            }, 1000); 
+            }, 800);
         }
 
         function initializeModal(modalId, openButtonsClass) {
@@ -1370,7 +1371,5 @@
     </script>
 </body>
 </html>
-
-
 
 
